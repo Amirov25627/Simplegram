@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_nav"
+    app:startDestination="@id/splashScreenFragment">
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.simplegram.ui.SplashScreenFragment"
+        android:label="SplashScreenFragment" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_photosListFragment"
+            app:destination="@id/photosListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photosListFragment"
+        android:name="com.example.simplegram.ui.PhotosListFragment"
+        android:label="PhotosListFragment" >
+        <action
+            android:id="@+id/action_photosListFragment_to_uploadingFragment"
+            app:destination="@id/uploadingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadingFragment"
+        android:name="com.example.simplegram.ui.UploadingFragment"
+        android:label="UploadingFragment" >
+        <action
+            android:id="@+id/action_uploadingFragment_to_photosListFragment"
+            app:destination="@id/photosListFragment" />
+    </fragment>
+</navigation>
