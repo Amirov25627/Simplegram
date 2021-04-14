@@ -26,6 +26,8 @@ open class ViewModel(app: Application) : ViewModel() {
     var splash = MutableLiveData<Boolean>()
 
 
+
+
     fun initializeDbRef() {
         database = Firebase.database.reference
         storage = Firebase.storage
@@ -62,6 +64,7 @@ open class ViewModel(app: Application) : ViewModel() {
             }
         }
     }
+    fun getPosts() = PostModel.getPostsLiveData()
 }
 
 

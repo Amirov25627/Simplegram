@@ -1,6 +1,7 @@
 package com.example.simplegram.network
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.example.simplegram.viewModel
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.*
@@ -10,7 +11,7 @@ import kotlin.collections.ArrayList
 
 object PostModel : Observable() {
     private var mValueDataListener: ValueEventListener? = null
-    private var mPostList: ArrayList<PostData>? = ArrayList()
+    private var mPostList: MutableLiveData<ArrayList<PostData>>? = MutableLiveData()
 
      fun getDatabaseRef(): DatabaseReference? {
         return FirebaseDatabase.getInstance().reference.child("post")
@@ -42,10 +43,10 @@ object PostModel : Observable() {
                                 e.printStackTrace()
                             }
                         }
-                        mPostList = data
+                        mPostList?.postValue(data)
                         Log.i(
                             "postmodel",
-                            "data updated, " + mPostList!!.size + mPostList
+                            "data updated, " + mPostList!!.value?.size + mPostList
 
                         )
                         setChanged()
@@ -73,4 +74,5 @@ object PostModel : Observable() {
             }
         }
     }
+    fun getPostsLiveData()= mPostList
 }

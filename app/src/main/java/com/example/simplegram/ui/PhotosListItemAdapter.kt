@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.simplegram.databinding.PhotosListItemBinding
 import com.example.simplegram.network.PostData
 
-class PhotosListItemAdapter(private val viewModel: ViewModel) : RecyclerView.Adapter<PhotosViewHolder>() {
+class PhotosListItemAdapter() : RecyclerView.Adapter<PhotosViewHolder>() {
 
     private val mList = mutableListOf<PostData>()
 
@@ -18,9 +18,7 @@ class PhotosListItemAdapter(private val viewModel: ViewModel) : RecyclerView.Ada
         val inflater = LayoutInflater.from(parent.context)
         val binding = PhotosListItemBinding.inflate(inflater, parent, false)
         return PhotosViewHolder(
-            binding,
-            viewModel
-        )
+            binding)
     }
 
     override fun getItemCount(): Int {
@@ -31,9 +29,15 @@ class PhotosListItemAdapter(private val viewModel: ViewModel) : RecyclerView.Ada
     override fun onBindViewHolder(holder: PhotosViewHolder, position: Int) {
         holder.bind(mList[position])
     }
+
+    fun updatePost(arrayList: ArrayList<PostData>){
+        mList.clear()
+        mList.addAll(arrayList)
+        notifyDataSetChanged()
+    }
 }
 
-class PhotosViewHolder(private val binding: PhotosListItemBinding, private val viewModel: ViewModel) : RecyclerView.ViewHolder(binding.root) {
+class PhotosViewHolder(private val binding: PhotosListItemBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(data: PostData) {
         Log.d("DATTT", data.description)
         val uri = Uri.parse(data.photo)

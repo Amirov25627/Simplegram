@@ -47,6 +47,7 @@ class UploadingFragment : Fragment() {
 
         binding.publicButton.setOnClickListener {
             viewModel.savePost(uri, binding.newDescription.text.toString())
+            Toast.makeText(context, "In process..." , Toast.LENGTH_SHORT).show()
         }
 
         viewModel.finish.observe(viewLifecycleOwner, Observer {
@@ -79,6 +80,7 @@ class UploadingFragment : Fragment() {
                 binding.addPhotoButton.visibility = View.GONE
                 binding.inactiveButton.visibility = View.GONE
                 binding.publicButton.visibility = View.VISIBLE
+
             } catch (e: IOException) {
                 e.printStackTrace()
                 Toast.makeText(context, "" + e, Toast.LENGTH_SHORT).show()
